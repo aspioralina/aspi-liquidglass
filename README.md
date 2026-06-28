@@ -20,3 +20,7 @@ npm run dev
 ```
 
 everything is neatly organized so you can just dive in and tweak the css/js to your liking. feel free to drop it into your own stuff.
+
+
+
+<img width="962" height="683" alt="image" src="https://github.com/user-attachments/assets/86378f2f-9c1a-48de-860a-41bcc6e8a2de" />
