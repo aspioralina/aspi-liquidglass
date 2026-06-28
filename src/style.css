@@ -1,0 +1,89 @@
+@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&display=swap');
+@import "tailwindcss";
+
+@theme {
+  --font-sans: -apple-system, BlinkMacSystemFont, "SF Pro Display", "SF Pro Text", "SF Pro", "Segoe UI", "Helvetica Neue", Helvetica, Arial, sans-serif;
+}
+
+body {
+  font-family: var(--font-sans);
+  margin: 0;
+  padding: 0;
+  overflow-x: hidden;
+  min-height: 100vh;
+  width: 100vw;
+  perspective: 1200px; /* Essential for 3D card tilt reflections */
+}
+
+/* Light Glassmorphism Card (Refined with Apple HIG Specs) */
+.glass-card {
+  background: rgba(255, 255, 255, 0.4);
+  
+  /* Lensing/Vibrancy: high blur & saturation prevents muddy bleed */
+  backdrop-filter: blur(32px) saturate(210%) contrast(95%);
+  -webkit-backdrop-filter: blur(32px) saturate(210%) contrast(95%);
+  
+  border: 1px solid rgba(255, 255, 255, 0.42);
+  box-shadow: 
+    0 15px 45px -10px rgba(30, 20, 90, 0.08),
+    inset 0 1px 0 rgba(255, 255, 255, 0.35);
+  
+  transform-style: preserve-3d;
+  transition: transform 0.1s ease-out, box-shadow 0.4s ease;
+}
+
+.glass-card:hover {
+  box-shadow: 
+    0 30px 65px -15px rgba(30, 20, 90, 0.14),
+    inset 0 1px 0 rgba(255, 255, 255, 0.5);
+}
+
+/* Specular Glare Shine Layer */
+#glass-glare {
+  background: radial-gradient(circle at center, rgba(255, 255, 255, 0.22) 0%, rgba(255, 255, 255, 0) 65%);
+  mix-blend-mode: overlay; /* Spills background wave colors onto the highlights */
+  opacity: 0.15;
+  transition: opacity 0.5s ease;
+  will-change: transform;
+}
+
+.group:hover #glass-glare {
+  opacity: 0.8;
+}
+
+/* Hypnotic Wave Sway Animations (Swaying Liquid Video Effect) */
+@keyframes wave-sway-slow {
+  0% { transform: rotate(0deg) translate(0px, 0px) scale(1); }
+  50% { transform: rotate(2.5deg) translate(25px, -15px) scale(1.04); }
+  100% { transform: rotate(0deg) translate(0px, 0px) scale(1); }
+}
+
+@keyframes wave-sway-medium {
+  0% { transform: rotate(0deg) translate(0px, 0px) scale(1); }
+  50% { transform: rotate(-3deg) translate(-30px, 20px) scale(1.06); }
+  100% { transform: rotate(0deg) translate(0px, 0px) scale(1); }
+}
+
+@keyframes wave-sway-fast {
+  0% { transform: rotate(0deg) translate(0px, 0px) scale(1); }
+  50% { transform: rotate(3.5deg) translate(15px, -25px) scale(1.08); }
+  100% { transform: rotate(0deg) translate(0px, 0px) scale(1); }
+}
+
+.animate-wave-slow {
+  animation: wave-sway-slow 22s infinite ease-in-out;
+  transform-origin: center center;
+  will-change: transform;
+}
+
+.animate-wave-medium {
+  animation: wave-sway-medium 17s infinite ease-in-out;
+  transform-origin: bottom center;
+  will-change: transform;
+}
+
+.animate-wave-fast {
+  animation: wave-sway-fast 13s infinite ease-in-out;
+  transform-origin: left bottom;
+  will-change: transform;
+}
